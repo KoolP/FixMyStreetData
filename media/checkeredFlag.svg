@@ -7,7 +7,7 @@
     rect {
         fill: yellow;
         animation-name: example;
-        animation-duration: 2s;
+        animation-duration: 4s;
     }
   </style>
   <rect id="flag" width="80" height="80" style="fill:yellow;"/> <!-- style="fill:#0003;" -->

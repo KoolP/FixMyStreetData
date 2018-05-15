@@ -6,6 +6,7 @@
 	 <style>
 	 	@keyframes example {
 		0%    { transform: translate(5px, 5px) rotate(10deg); }
+		100%    { transform: translate(5px, 5px) rotate(0deg); }
 	 	}
 	 	svg {
 				 animation: example 3s ease infinite;

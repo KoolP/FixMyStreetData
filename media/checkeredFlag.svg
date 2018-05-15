@@ -1,17 +1,17 @@
 <svg height="160" width="160" xmlns="http://www.w3.org/2000/svg">
   <style>
     @keyframes example {
-        from {fill: white;}
-        to {fill: yellow;}
+        from {fill: yellow;}
+        to {fill: #0003;}
     }
     rect {
-        fill: yellow;
+        fill: #0003;
         animation-name: example;
         animation-duration: 4s;
     }
   </style>
-  <rect id="flag" width="80" height="80" style="fill:yellow;"/> <!-- style="fill:#0003;" -->
-  <rect id="flag" x="80" y="80" width="80" height="80" style="fill:yellow;"/>
+  <rect id="flag" width="80" height="80" style="fill:#0003;"/> <!-- style="fill:#0003;" -->
+  <rect id="flag" x="80" y="80" width="80" height="80" style="fill:#0003;"/>
 </svg>
 
 

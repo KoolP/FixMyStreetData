@@ -1,4 +1,29 @@
 <svg height="160" width="160" xmlns="http://www.w3.org/2000/svg">
+  <style>
+    @keyframes example {
+        from {fill: white;}
+        to {fill: yellow;}
+    }
+    rect {
+        fill: yellow;
+        animation-name: example;
+        animation-duration: 2s;
+    }
+  </style>
+  <rect id="flag" width="80" height="80" style="fill:yellow;"/> <!-- style="fill:#0003;" -->
+  <rect id="flag" x="80" y="80" width="80" height="80" style="fill:yellow;"/>
+</svg>
+
+
+<!-- orginal svg image -->
+<!-- <svg height="160" width="160" xmlns="http://www.w3.org/2000/svg">
   <rect id="flag" width="80" height="80" style="fill:#0003;"/>
   <rect id="flag" x="80" y="80" width="80" height="80" style="fill:#0003;"/>
-</svg>
+</svg> -->
+
+<!-- hover example -->
+<!-- onmouseover="this.setAttribute('fill','#88B337')"
+onmouseout="this.setAttribute('fill', '#0003')" -->
+
+<!-- Anmations moving around:
+https://www.w3schools.com/css/tryit.asp?filename=trycss3_animation_delay -->

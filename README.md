@@ -4,7 +4,7 @@ Fetch and visualise data from FixMyStreet.org
 
 Frågor
 
-1.behövs parseInt?
+1.Hur bygger denna funktion key value pairs? behövs parseInt?
 function objectBuilder(reports) {
   var reportsPerCategory = {};
 

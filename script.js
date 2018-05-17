@@ -24,27 +24,28 @@ function getJSON() {
       // console.log(reports);
       // console.log(reports.length);
       var reports = result.requests[0].request;
-      var reportsPerCategory = objectBuilder(reports);
+      reportsPerCategory = objectBuilder(reports);
 
       createTable(reportsPerCategory);
+      buildDiagram(reportsPerCategory);
     });
 }
 
 function objectBuilder(reports) {
   var reportsPerCategory = {};
 
-  for(var i=0; i<reports.length; i++) {
+  for (var i = 0; i < reports.length; i++) {
     var report = reports[i];
 
     if (reportsPerCategory[report[sERVICENAME]] == undefined) {
-      reportsPerCategory[report[sERVICENAME]] = "1";
+      reportsPerCategory[report[sERVICENAME]] = 1; // "1"
     } else {
-      var currentAmount = parseInt(reportsPerCategory[report[sERVICENAME]]);
+      var currentAmount = reportsPerCategory[report[sERVICENAME]];
       currentAmount = currentAmount + 1;
-      reportsPerCategory[report[sERVICENAME]] = currentAmount.toString();
+      reportsPerCategory[report[sERVICENAME]] = currentAmount
     }
   }
-  console.log(reportsPerCategory);
+  console.log(reportsPerCategory, Object.entries(reportsPerCategory));
   return Object.entries(reportsPerCategory);
 }
 
@@ -97,4 +98,53 @@ function changeRowColor(tr) {
   tr.addEventListener('mouseout', function(event) {
     event.target.parentElement.style.backgroundColor = 'white';
   });
+}
+
+function buildDiagram() {
+  var width = 300;
+  var height = 200;
+
+  var xScale = d3.scaleLinear();
+  xScale.domain([0, reportsPerCategory.length]);
+  xScale.range([30, width]);
+
+  //Make an array of the reportsPerCategory object
+  var mappedValues = reportsPerCategory.map(function(value) {
+    return value[1];
+  })
+
+  var yScale = d3.scaleLinear();
+  yScale.domain([0, d3.max(mappedValues)]);
+  yScale.range([height - 20, 20]);
+
+
+  console.log(mappedValues);
+  //Visualisera array
+  var svg = d3.select('#div2')
+    .append('svg')
+    .attr('width', width)
+    .attr('height', height)
+    .selectAll('rect')
+    .data(mappedValues) // array
+    .enter()
+    .append('rect')
+    .attr('width',
+      width / mappedValues.length - 5)
+    .attr('height', function(value, index) {
+      return height - 20 - yScale(value);
+    })
+    .attr('fill', 'orange')
+    .attr('x', function(value, index) {
+      return xScale(index);
+    })
+    .attr('y', function(value, index) {
+      return yScale(value);
+    })
+    .on('click', function() {
+      console.log('Click!', d3.event, this);
+      d3.select(this).attr('fill', 'red');
+      console.log(this);
+    });
+
+
 }

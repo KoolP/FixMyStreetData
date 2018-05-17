@@ -7,3 +7,21 @@
 /* svg #flag:hover {
   fill: #88B337;
 } */
+
+#div1 {
+  width: 320px;
+  margin: auto;
+  background-color: #88B337;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 10px;
+}
+
+td:nth-child(2) {
+  text-align: center;
+}
+
+#div2 {
+  height: 500px;
+  width: 320px;
+}

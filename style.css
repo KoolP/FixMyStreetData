@@ -10,7 +10,9 @@
 
 #div1 {
   width: 320px;
-  margin: auto;
+  float: left;
+  /* margin: auto; */
+  margin: 20px;
   background-color: #88B337;
   padding: 20px;
   margin-top: 40px;
@@ -19,9 +21,15 @@
 
 td:nth-child(2) {
   text-align: center;
+  /* border-radius: 10px; */
 }
 
 #div2 {
-  height: 500px;
-  width: 320px;
+  width: 800px;
+  /* margin: auto; */
+  float: left;
+  background-color: #88B337;
+  padding: 20px;
+  margin-top: 40px;
+  border-radius: 10px;
 }

@@ -96,40 +96,44 @@ function changeRowColor(tr) {
     event.target.parentElement.style.backgroundColor = '#88B337';
   });
   tr.addEventListener('mouseout', function(event) {
-    event.target.parentElement.style.backgroundColor = 'white';
+    event.target.parentElement.style.backgroundColor = 'orange';
   });
 }
 
 function buildDiagram() {
-  var width = 300;
-  var height = 200;
-
-  var xScale = d3.scaleLinear();
-  xScale.domain([0, reportsPerCategory.length]);
-  xScale.range([30, width]);
+  var width = 800;
+  var height = 400;
 
   //Make an array of the reportsPerCategory object
-  var mappedValues = reportsPerCategory.map(function(value) {
+  var mapToArr = reportsPerCategory.map(function(value) {
     return value[1];
   })
+  console.log(mapToArr);
+
+  var xScale = d3.scaleLinear();
+    xScale.domain([0, reportsPerCategory.length]);
+    xScale.range([30, width]);
 
   var yScale = d3.scaleLinear();
-  yScale.domain([0, d3.max(mappedValues)]);
-  yScale.range([height - 20, 20]);
+    yScale.domain([0, d3.max(mapToArr)]);
+    yScale.range([height - 20, 20]);
 
+  var yAxis = d3.axisLeft().scale(yScale);
 
-  console.log(mappedValues);
-  //Visualisera array
+  //visualiser diagram
   var svg = d3.select('#div2')
-    .append('svg')
-    .attr('width', width)
-    .attr('height', height)
-    .selectAll('rect')
-    .data(mappedValues) // array
+            .append('svg')
+            .attr('height', height)
+            .attr('width', width);
+
+  svg.selectAll('rect')
+    .data(mapToArr) // array
     .enter()
     .append('rect')
+    .attr('x', function (value, index) { return xScale(index); })
+    .attr('y', function (value) { return yScale(value); })
     .attr('width',
-      width / mappedValues.length - 5)
+      width / mapToArr.length - 5)
     .attr('height', function(value, index) {
       return height - 20 - yScale(value);
     })
@@ -146,5 +150,59 @@ function buildDiagram() {
       console.log(this);
     });
 
+    svg.append('g')
+    .attr('transform', 'translate(25, 0)')
+    .call(yAxis);
+
 
 }
+
+
+// function buildDiagram() {
+//   var width = 800;
+//   var height = 400;
+//
+//   var xScale = d3.scaleLinear();
+//   xScale.domain([0, reportsPerCategory.length]);
+//   xScale.range([30, width]);
+//
+//   //Make an array of the reportsPerCategory object
+//   var mapToArr = reportsPerCategory.map(function(value) {
+//     return value[1];
+//   })
+//
+//   var yScale = d3.scaleLinear();
+//   yScale.domain([0, d3.max(mapToArr)]);
+//   yScale.range([height - 20, 20]);
+//
+//
+//   console.log(mapToArr);
+//   //Visualisera array
+//   var svg = d3.select('#div2')
+//     .append('svg')
+//     .attr('width', width)
+//     .attr('height', height)
+//     .selectAll('rect')
+//     .data(mapToArr) // array
+//     .enter()
+//     .append('rect')
+//     .attr('width',
+//       width / mapToArr.length - 5)
+//     .attr('height', function(value, index) {
+//       return height - 20 - yScale(value);
+//     })
+//     .attr('fill', 'orange')
+//     .attr('x', function(value, index) {
+//       return xScale(index);
+//     })
+//     .attr('y', function(value, index) {
+//       return yScale(value);
+//     })
+//     .on('click', function() {
+//       console.log('Click!', d3.event, this);
+//       d3.select(this).attr('fill', 'red');
+//       console.log(this);
+//     });
+//
+//
+// }

@@ -104,6 +104,9 @@ function buildDiagram() {
   var width = 800;
   var height = 400;
   var padding = 15 ;
+  var tip = d3.select("body").append("div")
+    .attr("class", "tip")
+    .style("opacity", 0);
 
   //Make an array of the reportsPerCategory object
   var mapValueArr = reportsPerCategory.map(function(value) {
@@ -136,7 +139,7 @@ function buildDiagram() {
   //visualiser diagram
   var svg = d3.select('#div2')
             .append('svg')
-            .attr('height', height)
+            .attr('height', height + 70)
             .attr('width', width);
 
   svg.selectAll('g') //NEW
@@ -165,7 +168,20 @@ function buildDiagram() {
             console.log('Click!', d3.event, this);
             d3.select(this).attr('fill', 'red');
             console.log(this);
-          });
+          })
+          .on("mouseover", function(event) {
+            tip.transition()
+            .duration(200)
+            .style("opacity", .9);
+            tip.html(event)
+            .style("left", (d3.event.pageX) + "px")
+            .style("top", (d3.event.pageY - 28) + "px");
+          })
+          .on("mouseout", function(d) {
+            tip.transition()
+            .duration(500)
+            .style("opacity", 0);
+        });
 
       return g;
     });

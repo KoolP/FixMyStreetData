@@ -4,6 +4,15 @@
   background-size: 62px;
 }
 
+body {
+    font-family: 'Open Sans', sans-serif;
+}
+
+p {
+  font-family: "Open Sans", sans-serif;
+	font-size: 14px;
+	font-style: medium
+}
 /* svg #flag:hover {
   fill: #88B337;
 } */
@@ -24,6 +33,7 @@ td:nth-child(2) {
   /* border-radius: 10px; */
 }
 
+
 #div2 {
   width: 800px;
   /* margin: auto; */
@@ -32,4 +42,11 @@ td:nth-child(2) {
   padding: 20px;
   margin-top: 40px;
   border-radius: 10px;
+}
+
+.footer {
+  clear: both;
+  background-image: url('media/checkeredFlag.svg');
+  background-size: 62px;
+  padding: 40px;
 }

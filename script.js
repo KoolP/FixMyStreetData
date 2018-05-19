@@ -125,6 +125,7 @@ function buildDiagram() {
     yScale.range([height - 20, 20]);
 
   var yAxis = d3.axisLeft().scale(yScale);
+  var xAxis = d3.axisLeft().scale(xScale);
 
   //visualiser diagram
   var svg = d3.select('#div2')
@@ -161,15 +162,20 @@ function buildDiagram() {
           });
 
         g.append('text')
-        .attr('x', function(value, index) {
-          return index * 60 + 27.5;
-        })
+        // .attr('x', function(value, index) {
+        //   return index * 60 + 27.5;
+        // })
+        // .attr('x', function (value, index) { return xScale(index) + index + padding / (mapKeyArr.length - 1); })
+        .attr('x', function(){ return x(lineEnd)})
+        .attr('width',
+        width / mapKeyArr.length - padding)
         .attr('y', 190)
         .attr('font-size', '8')
         .attr('text-anchor', 'middle')
-        .attr('transform', function(d) {
-          return 'rotate(-60)';
-        })
+        // .attr('transform', function(d) {
+        //   return 'rotate(-60)';
+        // })
+        .attr('x', 500)
         .text(function (value) { return mapKeyArr});
 
       return g;

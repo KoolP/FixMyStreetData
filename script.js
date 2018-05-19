@@ -126,6 +126,12 @@ function buildDiagram() {
 
   var yAxis = d3.axisLeft().scale(yScale);
   //var xAxis = d3.axisLeft().scale(xScale);
+  var xAxis = d3.axisBottom()
+        .scale(xScale)
+        .ticks(mapKeyArr.length)
+        .tickFormat(function(value, index){
+            return mapKeyArr[index]
+        });
 
   //visualiser diagram
   var svg = d3.select('#div2')
@@ -186,6 +192,14 @@ function buildDiagram() {
     .call(yAxis);
 
     svg.append('g')
+    .append('g')
+    .attr('transform', 'translate(0, 385)')
+    .call(xAxis)
+    .selectAll('text')
+    .attr("transform", "rotate(-45)")
+    .attr('text-anchor', 'end');
+
+    console.log(xAxis.value);
 
 
 }

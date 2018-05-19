@@ -167,32 +167,14 @@ function buildDiagram() {
             console.log(this);
           });
 
-        // g.append('text')
-        // // .attr('x', function(value, index) {
-        // //   return index * 60 + 27.5;
-        // // })
-        // // .attr('x', function (value, index) { return xScale(index) + index + padding / (mapKeyArr.length - 1); })
-        // .attr('width',
-        // width / mapKeyArr.length - padding)
-        // .attr('y', 190)
-        // .attr('font-size', '8')
-        // .attr('text-anchor', 'middle')
-        // // .attr('transform', function(d) {
-        // //   return 'rotate(-60)';
-        // // })
-        // .attr('x', 500)
-        // .text(function (value) { return mapKeyArr});
-
       return g;
     });
-
 
     svg.append('g')
     .attr('transform', 'translate(25, 0)')
     .call(yAxis);
 
     svg.append('g')
-    .append('g')
     .attr('transform', 'translate(0, 385)')
     .call(xAxis)
     .selectAll('text')

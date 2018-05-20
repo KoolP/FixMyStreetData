@@ -8,11 +8,13 @@ body {
     font-family: 'Open Sans', sans-serif;
 }
 
-p {
+/* footer p{
   font-family: "Open Sans", sans-serif;
 	font-size: 14px;
-	font-style: medium
-}
+	font-style: medium;
+  margin: none;
+} */
+
 /* svg #flag:hover {
   fill: #88B337;
 } */
@@ -23,7 +25,7 @@ p {
   /* margin: auto; */
   margin: 20px;
   background-color: #88B337;
-  padding: 20px;
+  padding: 40px 20px 70px 20px;
   margin-top: 40px;
   border-radius: 10px;
 }
@@ -41,6 +43,7 @@ td:nth-child(2) {
   background-color: #88B337;
   padding: 20px;
   margin-top: 40px;
+  margin-bottom: 40px;
   border-radius: 10px;
 }
 
@@ -48,7 +51,7 @@ td:nth-child(2) {
   clear: both;
   background-image: url('media/checkeredFlag.svg');
   background-size: 62px;
-  padding: 40px;
+  padding: 62px;
 }
 
 

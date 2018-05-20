@@ -56,7 +56,7 @@ function createTable(reportsPerCategory) {
   th1.appendChild(document.createTextNode('Service Category'));
 
   var th2 = document.createElement('th');
-  th2.appendChild(document.createTextNode('Reports Amount'));
+  th2.appendChild(document.createTextNode('Reports'));
 
   tr.appendChild(th1);
   tr.appendChild(th2);
@@ -139,7 +139,7 @@ function buildDiagram() {
   //visualiser diagram
   var svg = d3.select('#div2')
             .append('svg')
-            .attr('height', height + 70)
+            .attr('height', height + 86)
             .attr('width', width);
 
   svg.selectAll('g') //NEW
@@ -166,7 +166,7 @@ function buildDiagram() {
           })
           .on('click', function() {
             console.log('Click!', d3.event, this);
-            d3.select(this).attr('fill', 'red');
+            d3.select(this).attr('fill', '#8C421C');
             console.log(this);
           })
           .on("mouseover", function(event) {
@@ -191,7 +191,7 @@ function buildDiagram() {
     .call(yAxis);
 
     svg.append('g')
-    .attr('transform', 'translate(0, 385)')
+    .attr('transform', 'translate(0,' + (height - 20) + ')')
     .call(xAxis)
     .selectAll('text')
     .attr("transform", "rotate(-45)")

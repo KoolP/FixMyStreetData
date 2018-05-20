@@ -1,3 +1,4 @@
+
 .nav {
   /* background: lightgrey; */
   background-image: url('media/checkeredFlag.svg');
@@ -66,4 +67,20 @@ div.tip {
     border: 0px;
     border-radius: 80px;
     pointer-events: none;
+}
+
+
+#navlinks {
+  width: 30%;
+  float: right;
+  padding-top: 10px;
+}
+
+ul, #links {
+  list-style-type: none;
+ }
+
+ a {
+    text-decoration: none;
+    color: #733616;
 }

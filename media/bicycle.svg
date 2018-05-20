@@ -4,7 +4,7 @@
 	 viewBox="0 0 464 464" style="enable-background:new 0 0 464 464;" xml:space="preserve">
 
 	 //svg animations check these https://webdesign.tutsplus.com/tutorials/how-to-use-animatetransform-for-inline-svg-animation--cms-22296
-	 
+
 	 <style>
 	 	@keyframes example {
 		0%    { transform: translate(5px, 5px) rotate(50deg); }
@@ -68,3 +68,6 @@
 <g>
 </g>
 </svg>
+
+<!-- bike svg image credit; -->
+<!-- <div>Icons made by <a href="https://www.flaticon.com/authors/monkik" title="monkik">monkik</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a> is licensed by <a href="http://creativecommons.org/licenses/by/3.0/" title="Creative Commons BY 3.0" target="_blank">CC 3.0 BY</a></div> -->

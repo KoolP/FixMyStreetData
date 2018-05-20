@@ -1,4 +1,4 @@
-
+//How to load these functions only once within the pages..
 
 addEventListener('load', function() {
   getJSON();
@@ -47,97 +47,71 @@ function objectBuilder(reports) {
 }
 
 
-/* Denna metod är inspirerad av följande GitHub-projekt:
-https://gist.github.com/scottlittle/c0c40e2b0aa4a364cc4216cc932e93e7 */
+/*examples https://gist.github.com/scottlittle/c0c40e2b0aa4a364cc4216cc932e93e7 */
 function make3DStapleDiagram(reports) {
-  // Genomskinlighet på staplarna
-  var alpha = 0.5;
-  // x-axelns värden
-  var mappedProblems = reports.map(function(value) {
+
+  var alpha = 0.9;
+  var mapKeyArr = reports.map(function(value) {
     return value[0];
   });
-  // y-axelns värden
-  var mappedValues = reports.map(function(value) {
+  var mapValueArr = reports.map(function(value) {
     return value[1];
   });
-
-  // y-axeln skalas
+  console.log(mapValueArr.sort(function(b, a){return a-b}));
   var yScale = d3.scale.linear()
-    .domain([0, d3.max(mappedValues)])
+    .domain([0, d3.max(mapValueArr)])
     .range([0, 3]);
-
-  // Referensen till AFrame-scenen.
   var scene = d3.select("a-scene");
+  var bars = scene.selectAll("a-box.bar").data(mapValueArr);
 
-  // Referensen till staplarna, med mappedValues (y-värdena)
-  // som data.
-  var bars = scene.selectAll("a-box.bar").data(mappedValues);
-
-  // Den magiska enter-metoden, för att efterföljande
-  // rader ska kunna göras.
+  // Loop and create bars
   bars.enter().append("a-box").classed("bar", true);
 
-  // Lägger till a-text element för respektive stapel,
-  // som redogör för x-och y värdena när "crosshair"
-  // är över den.
   $(".bar").append("<a-text> </a-text>");
 
-  // Sätter attribut för staplarna;
-  // - Position i form av x,y,z koordinater.
-  // - Bredd för stapeln
-  // - Höjd för stapeln
-  // - Djup på stapeln
-  // - Stapelns färg
   bars.attr({
       position: function(d, i) {
-        var x = i * .75;
+        var x = i * .40;
         var y = yScale(d) / 2;
         var z = 1;
-        return x + " " + (y + 1.5) + " " + z;
+        return (x + 5) + " " + (y + 0.5) + " " + (z + 3.8);
       },
       width: function(d) {
-        return 0.5;
+        return 0.2;
       },
       depth: function(d) {
-        return 0.5;
+        return 0.2;
       },
       height: function(d) {
         return yScale(d);
       },
       opacity: alpha,
-      color: 'cyan'
+      color: 'orange'
     })
     .on("mouseenter", function(data, index) {
-      // En tyst retur om musen
-      // redan befinner sig innanför stapeln.
+      //check
       if (this.hovering) {
         return;
       }
-
       this.hovering = true;
-      // Ändrar genomskinligheten på stapeln,
-      // för att indikera att man tittar på den.
       d3.select(this).transition().duration(10)
         .attr({
           metalness: 0.8,
           opacity: .9
         });
-      // Skapar en text i a-text elementet som redogör för både
-      // x-och y värdena för den specifika staplen.
+
       d3.select(this).select("a-text")
         .attr({
-          'color': 'hsla(240, 100%, 25%, 0.6)',
+          'color': 'hsla(39, 100%, 50%, 1)',
           'align': 'center',
           'position': '0 ' + (yScale(data) / 2 + .5) + ' 0',
           'scale': '1 1 1',
-          'value': mappedProblems[index] + ', ' + data
+          'value': mapKeyArr[index] + ', ' + data
         });
     })
     .on("mouseleave", function(data, index) {
       this.hovering = false;
-      // Ändrar tillbaka till vanlig genomskinlighet,
-      // när crosshair lämnar stapeln.
-      d3.select(this).transition().duration(500)
+      d3.select(this).transition().duration(300)
         .attr({
           metalness: 0,
           opacity: alpha
@@ -145,7 +119,7 @@ function make3DStapleDiagram(reports) {
       // Tar bort texten när crosshair lämnar stapeln.
       d3.select(this).select("a-text")
         .attr({
-          'color': 'cyan',
+          'color': 'orange',
           'align': 'center',
           'position': '0 ' + (yScale(data) / 2 + .5) + ' 0',
           'scale': '.01 .01 .01',

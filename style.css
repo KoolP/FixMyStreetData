@@ -84,3 +84,12 @@ ul, #links {
     text-decoration: none;
     color: #733616;
 }
+
+.aframebox {
+height: 400px;
+width: 800px;
+margin: auto;
+margin-top: 40px;
+margin-bottom: 40px;
+border-radius: 80px;
+}
